@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="mb-6 md:mb-0 text-center md:text-left">
           <span className="text-2xl font-bold text-white">Ping</span>
           <p className="mt-2 text-gray-400 text-sm max-w-xs">
-            Empowering your business with innovative solutions and dedicated support.
+            Helping teams collect and act on user feedback to build better products.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-8">
@@ -22,21 +22,21 @@ const Footer = () => {
                 <a href="/pricing" className="hover:underline text-gray-300">Pricing</a>
               </li>
               <li>
-                <a href="/features" className="hover:underline text-gray-300">Features</a>
+                <a href="/use-cases" className="hover:underline text-gray-300">Use Cases</a>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-2">Company</h3>
+            <h3 className="font-semibold text-white mb-2">Resources</h3>
             <ul className="space-y-1 text-sm">
               <li>
-                <a href="/about" className="hover:underline text-gray-300">About</a>
+                <a href="/docs" className="hover:underline text-gray-300">Documentation</a>
               </li>
               <li>
-                <a href="/contact" className="hover:underline text-gray-300">Contact</a>
+                <a href="/contact" className="hover:underline text-gray-300">Support</a>
               </li>
               <li>
-                <a href="/careers" className="hover:underline text-gray-300">Careers</a>
+                <a href="/blog" className="hover:underline text-gray-300">Blog</a>
               </li>
             </ul>
           </div>
@@ -49,6 +49,9 @@ const Footer = () => {
               <li>
                 <a href="/privacy" className="hover:underline text-gray-300">Privacy</a>
               </li>
+              <li>
+                <a href="/gdpr" className="hover:underline text-gray-300">GDPR</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -57,9 +60,6 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} Ping. All rights reserved.
       </div>
     </footer>
-  )
-  return (
-    <div>Footer</div>
   )
 }
 
