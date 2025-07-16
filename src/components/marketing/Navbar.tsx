@@ -11,7 +11,7 @@ const Navbar = () => {
   const pathname = usePathname();
   return (
     <>
-      <nav className="flex justify-around items-center responsivePad">
+      <nav className="flex justify-between items-center responsivePad">
         <Image
           src="/logo.png"
           alt="logo"
@@ -19,7 +19,7 @@ const Navbar = () => {
           height={100}
           className="w-10 h-10"
         />
-        <ul className="hidden sm:flex items-center gap-4">
+        <ul className="hidden sm:flex justify-center items-center gap-4">
           <li>
             <NavLink href="/" active={pathname === "/"}>
               Home
@@ -33,6 +33,11 @@ const Navbar = () => {
           <li>
             <NavLink href="/pricing" active={pathname === "/pricing"}>
               Pricing
+            </NavLink>  
+          </li>
+          <li>
+            <NavLink href="/how-it-works" active={pathname === "/how-it-works"}>
+              How It Works
             </NavLink>
           </li>
         </ul>
