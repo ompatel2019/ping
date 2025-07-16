@@ -1,14 +1,28 @@
-// src/components/marketing/Widget.tsx
+"use client";
+
 import React from "react";
+import WidgetForm from "./WidgetForm";
+import { X } from "lucide-react";
 
 const Widget = () => {
+
+  const [showPopup, setShowPopup] = React.useState(false);
+
+  const handleButtonClick = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div className="fixed bottom-8 right-8 z-50">
       <button
         className="rounded-full w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-2xl cursor-pointer transition-transform hover:scale-105 hover:shadow-blue-300 focus:outline-none focus:ring-4 focus:ring-blue-200 group"
         aria-label="Open Widget"
-      >
+        onClick={handleButtonClick}
+        >
         <div className="flex flex-col items-center justify-center">
           <svg
             className="w-6 h-6 text-white"
@@ -23,8 +37,11 @@ const Widget = () => {
               strokeLinejoin="round"
             />
           </svg>
-        </div>
+          </div>
       </button>
+      {showPopup && (
+        <WidgetForm setShowPopup={setShowPopup}/>
+      )}
     </div>
   );
 };

@@ -1,19 +1,23 @@
-// src/app/(auth)/login/page.tsx
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import React from 'react'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-const page = () => {
+const LoginPage = () => {
+
   return (
     <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <Link href="/">
-        <Button className="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Go Back</Button>
+        <Button className="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          Go Back
+        </Button>
       </Link>
       <div className="flex flex-col items-center justify-center w-full max-w-md px-4">
         <h1 className="text-4xl font-bold mb-6">Login</h1>
         <form className="bg-white rounded-lg shadow-md p-8 w-full flex flex-col gap-4">
-          <div>
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-1">
+          <div> 
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-medium mb-1"
+            >
               Email
             </label>
             <input
@@ -25,7 +29,10 @@ const page = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium mb-1"
+            >
               Password
             </label>
             <input
@@ -53,17 +60,21 @@ const page = () => {
         </form>
         <div className="mt-8 text-center text-gray-500 text-sm">
           <p>
-            By signing in, you agree to our{' '}
-            <a href="/terms" className="text-blue-600 hover:underline">Terms of Service</a> and{' '}
-            <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a>.
+            By signing in, you agree to our{" "}
+            <a href="/terms" className="text-blue-600 hover:underline">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="/privacy" className="text-blue-600 hover:underline">
+              Privacy Policy
+            </a>
+            .
           </p>
         </div>
       </div>
     </section>
-  )
-  return (
-    <div>page</div>
-  )
-}
+  );
+  return <div>page</div>;
+};
 
-export default page
+export default LoginPage;
