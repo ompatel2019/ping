@@ -10,6 +10,7 @@ const USERS_PATH = path.join(process.cwd(), "src", "users.json");
 export async function addFeedback(prevState: unknown, formData: FormData) {
   const feedback = feedbackSchema.safeParse({
     feedback: formData.get("feedback"),
+    userId: formData.get("userId"),
   });
 
   if (!feedback.success) {
@@ -19,7 +20,7 @@ export async function addFeedback(prevState: unknown, formData: FormData) {
   const raw = await fs.readFile(USERS_PATH, "utf-8");
   const users = JSON.parse(raw);
 
-  const user = users.find((u: User) => u.id === 1);
+  const user = users.find((u: User) => u.id === Number(feedback.data.userId));
   if (!user) {
     return { error: "User not found" };
   }
