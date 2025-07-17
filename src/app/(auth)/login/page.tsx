@@ -67,6 +67,11 @@ export default function LoginPage() {
         >
           {pending ? "Signing In..." : "Sign In"}
         </Button>
+        <Link href="/signup" className="w-full">
+          <Button className="w-full bg-gray-600 text-white">
+            Create an account
+          </Button>
+        </Link>
         <div className="text-center mt-4">
           <p>Use these credentials to test:</p>
           <p className="text-sm text-gray-500">Email: admin@gmail.com</p>

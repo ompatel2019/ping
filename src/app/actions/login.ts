@@ -2,10 +2,8 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { loginSchema } from "@/lib/schema";
-
-const VALID_EMAIL = "admin@gmail.com";
-const VALID_PASSWORD = "admin123";
+import { loginSchema } from "@/lib/loginSchema";
+import users from "@/users.json";
 
 export async function login(prevState: { error: string }, formData: FormData) {
   // Get and validate input
@@ -21,7 +19,8 @@ export async function login(prevState: { error: string }, formData: FormData) {
   }
 
   const { email, password } = result.data;
-  if (email !== VALID_EMAIL || password !== VALID_PASSWORD) {
+  const user = users.find((user) => user.email === email);
+  if (!user || user.password !== password) {
     return {
       error: "Invalid credentials. Please check your email and password.",
     };
