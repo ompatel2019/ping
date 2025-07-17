@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import fs from "fs/promises";
 import path from "path";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   email: string;

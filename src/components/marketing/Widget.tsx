@@ -33,7 +33,7 @@ const Widget = () => {
           </svg>
         </div>
       </button>
-      {showPopup && <WidgetForm setShowPopup={setShowPopup} />}
+      {showPopup && <WidgetForm setShowPopup={setShowPopup}/>}
     </div>
   );
 };
