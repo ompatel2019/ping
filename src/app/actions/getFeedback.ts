@@ -1,11 +1,11 @@
 "use server";
 
-import users from "@/users.json";
+import { getCurrentUser } from "@/util/getCurrentUser";
 
-export async function getFeedback(userId: string) {
-  const user = users.find((user) => user.id === Number(userId));
+export async function getFeedback() {
+  const user = await getCurrentUser();
   if (!user) {
     return { error: "User not found" };
   }
-  return user.feedback;
+  return user.feedback; 
 }

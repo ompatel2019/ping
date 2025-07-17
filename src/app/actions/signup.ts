@@ -5,16 +5,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import fs from "fs/promises";
 import path from "path";
-
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-}
+import { User } from "@/types/User";
 
 // Define the path to users.json
-const USERS_PATH = path.join(process.cwd(), "src", "users.json");
+const USERS_PATH = path.join(process.cwd(), "src/data", "users.json");
 
 export async function signup(prevState: unknown, formData: FormData) {
   const user = signUpSchema.safeParse({
@@ -42,6 +36,7 @@ export async function signup(prevState: unknown, formData: FormData) {
     name: user.data.name,
     email: user.data.email,
     password: user.data.password,
+    feedback: [],
   };
 
   users.push(newUser);
@@ -50,7 +45,7 @@ export async function signup(prevState: unknown, formData: FormData) {
   await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
 
   // Set session cookie
-  (await cookies()).set("session", "valid", {
+  (await cookies()).set("userId", newUserId.toString(), {
     path: "/",
     secure: process.env.NODE_ENV === "production",
     maxAge: 60 * 60 * 24 * 30,

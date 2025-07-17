@@ -49,18 +49,6 @@ const WidgetForm = ({
             name="feedback"
             id="feedback"
           />
-          <label
-            htmlFor="userId"
-            className="text-sm font-medium text-gray-700 text-left"
-          >
-            User ID
-          </label>
-          <input
-            type="text"
-            name="userId"
-            id="userId"
-            className="w-full p-2 rounded-md border border-gray-300"
-          />
           <Button
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded-md"

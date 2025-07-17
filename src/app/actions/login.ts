@@ -3,7 +3,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { loginSchema } from "@/lib/loginSchema";
-import users from "@/users.json";
+import { User } from "@/types/User";
+import users from "@/data/users.json";
 
 export async function login(prevState: { error: string }, formData: FormData) {
   // Get and validate input
@@ -19,7 +20,7 @@ export async function login(prevState: { error: string }, formData: FormData) {
   }
 
   const { email, password } = result.data;
-  const user = users.find((user) => user.email === email);
+  const user = users.find((user: User) => user.email === email);
   if (!user || user.password !== password) {
     return {
       error: "Invalid credentials. Please check your email and password.",
@@ -27,7 +28,7 @@ export async function login(prevState: { error: string }, formData: FormData) {
   }
 
   // Set cookie/session and redirect to dashboard
-  (await cookies()).set("session", "valid", {
+  (await cookies()).set("userId", user.id.toString(), {
     httpOnly: true,
     path: "/",
     secure: process.env.NODE_ENV === "production",
