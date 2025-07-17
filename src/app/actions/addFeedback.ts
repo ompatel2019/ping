@@ -38,6 +38,7 @@ export async function addFeedback(
     id: Math.floor(Math.random() * 1000000),
     feedback: feedback.data.feedback,
     createdAt: new Date().toISOString(),
+    isComplete: false,
   });
 
   await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));

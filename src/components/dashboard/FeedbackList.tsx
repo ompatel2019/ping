@@ -1,8 +1,8 @@
 // FeedbackList.tsx
 "use client";
 import { Feedback } from "@/types/User";
-import { Circle, Trash2 } from "lucide-react";
-import { deleteFeedback } from "@/app/actions/deleteFeedback";
+import { CircleCheckBig, Circle, Trash2 } from "lucide-react";
+import { updateFeedback } from "@/app/actions/updateFeedback";
 
 export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
   return (
@@ -18,14 +18,28 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
               className="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
             >
               <div className="flex items-start gap-3">
-                <button
-                  className="text-gray-400 hover:text-blue-500 transition"
-                  aria-label="Mark as complete"
-                >
-                  <Circle className="w-5 h-5 mt-1" />
-                </button>
+                <form action={updateFeedback}>
+                  <input type="hidden" name="feedbackId" value={item.id} />
+                  <button
+                    className="text-gray-400 hover:text-blue-500 transition"
+                    aria-label="Mark as complete"
+                    type="submit"
+                  >
+                    {item.isComplete ? (
+                      <CircleCheckBig className="w-5 h-5 mt-1 text-blue-500" />
+                    ) : (
+                      <Circle className="w-5 h-5 mt-1 text-blue-500" />
+                    )}
+                  </button>
+                </form>
                 <div className="flex flex-col text-sm text-gray-700">
-                  <p className="font-medium">{item.feedback}</p>
+                  <p
+                    className={`font-medium ${
+                      item.isComplete ? "line-through" : ""
+                    }`}
+                  >
+                    {item.feedback}
+                  </p>
                   <span className="text-xs text-gray-400 mt-1">
                     {new Date(item.createdAt).toLocaleString("en-GB", {
                       dateStyle: "short",
@@ -36,7 +50,7 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                 </div>
               </div>
 
-              <form action={deleteFeedback}>
+              <form action={updateFeedback}>
                 <input type="hidden" name="feedbackId" value={item.id} />
                 <button
                   type="submit"
