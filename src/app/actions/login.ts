@@ -17,7 +17,7 @@ export async function login(prevState: { error: string }, formData: FormData) {
     return { error: errors };
   }
 
-  const { email, password } = result.data;
+  const { email, password } = result.data;  
   const user = users.find((u: User) => u.email === email);
   if (!user || user.password !== password) {
     return {

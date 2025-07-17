@@ -27,7 +27,11 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                 <div className="flex flex-col text-sm text-gray-700">
                   <p className="font-medium">{item.feedback}</p>
                   <span className="text-xs text-gray-400 mt-1">
-                    {new Date(item.createdAt).toLocaleString()}
+                    {new Date(item.createdAt).toLocaleString("en-GB", {
+                      dateStyle: "short",
+                      timeStyle: "medium",
+                      timeZone: "Australia/Sydney",
+                    })}
                   </span>
                 </div>
               </div>

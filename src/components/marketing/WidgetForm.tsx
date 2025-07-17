@@ -5,9 +5,11 @@ import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import { useActionState } from "react";
 import { addFeedback } from "@/app/actions/addFeedback";
+import TransientMessage from "@/components/shared/TransientMessage";
 
 const initialState = {
   error: "",
+  success: "",
 };
 
 const WidgetForm = ({
@@ -41,7 +43,10 @@ const WidgetForm = ({
             Feedback
           </label>
           {state.error && (
-            <p className="text-red-500 text-sm mt-1">{state.error}</p>
+            <TransientMessage color="red">{state.error}</TransientMessage>
+          )}
+          {state.success && (
+            <TransientMessage color="green">{state.success}</TransientMessage>
           )}
           <textarea
             placeholder="Message"
