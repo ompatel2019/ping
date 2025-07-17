@@ -7,27 +7,24 @@ import { User } from "@/types/User";
 import users from "@/data/users.json";
 
 export async function login(prevState: { error: string }, formData: FormData) {
-  // Get and validate input
   const result = loginSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
 
   if (!result.success) {
-    // Only show first error, or all as a single string
     const errors = result.error.issues.map((e) => e.message).join(", ");
     return { error: errors };
   }
 
   const { email, password } = result.data;
-  const user = users.find((user: User) => user.email === email);
+  const user = users.find((u: User) => u.email === email);
   if (!user || user.password !== password) {
     return {
       error: "Invalid credentials. Please check your email and password.",
     };
   }
 
-  // Set cookie/session and redirect to dashboard
   (await cookies()).set("userId", user.id.toString(), {
     httpOnly: true,
     path: "/",
