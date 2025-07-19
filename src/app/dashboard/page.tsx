@@ -1,6 +1,7 @@
+// src/app/dashboard/page.tsx
 import React from "react";
 import { FeedbackList } from "@/components/dashboard/FeedbackList";
-import { getFeedback } from "../actions/getFeedback";
+import { getFeedback } from "../actions/feedback/getFeedback";
 import { Feedback } from "@/types/User";
 
 const DashboardPage = async () => {

@@ -1,3 +1,4 @@
+// src/lib/user/getCurrentUser.ts
 import { User } from "@/types/User";
 import { cookies } from "next/headers";
 import users from "@/data/users.json"; // this now must be an array!

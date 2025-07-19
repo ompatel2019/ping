@@ -1,10 +1,11 @@
+// src/components/marketing/WidgetForm.tsx
 "use client";
 
 import React from "react";
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import { useActionState } from "react";
-import { addFeedback } from "@/app/actions/addFeedback";
+import { addFeedback } from "@/app/actions/feedback/addFeedback";
 import TransientMessage from "@/components/shared/TransientMessage";
 
 const initialState = {

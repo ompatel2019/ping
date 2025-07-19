@@ -1,6 +1,7 @@
+// src/app/actions/signup.ts
 "use server";
 
-import { signUpSchema } from "@/lib/signUpSchema";
+import { signUpSchema } from "@/lib/validators/signUpSchema";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import fs from "fs/promises";

@@ -1,8 +1,9 @@
+// src/app/(auth)/signup/page.tsx
 "use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { useActionState } from "react";
-import { signup } from "@/app/actions/signup";
+import { signup } from "@/app/actions/auth/signup";
 
 const initialState = {
   error: "",

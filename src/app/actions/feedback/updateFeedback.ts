@@ -1,13 +1,14 @@
+// src/app/actions/updateFeedback.ts
 "use server";
 
-import { getCurrentUser } from "@/util/getCurrentUser";
 import { User } from "@/types/User";
+import { getCurrentUser } from "@/lib/user/getCurrentUser";
 import fs from "fs/promises";
 import path from "path";
 
 const USERS_PATH = path.join(process.cwd(), "src", "data", "users.json");
 
-export async function deleteFeedback(formData: FormData): Promise<void> {
+export async function updateFeedback(formData: FormData): Promise<void> {
   const feedbackId = Number(formData.get("feedbackId"));
   if (!feedbackId) return;
 
@@ -15,13 +16,12 @@ export async function deleteFeedback(formData: FormData): Promise<void> {
   const users: User[] = JSON.parse(raw);
 
   const userId = (await getCurrentUser())?.id;
-  if (!userId) return;
 
   const userIndex = users.findIndex((u) => u.id === userId);
   if (userIndex === -1) return;
 
-  users[userIndex].feedback = users[userIndex].feedback.filter(
-    (f) => f.id !== feedbackId
+  users[userIndex].feedback = users[userIndex].feedback.map((f) =>
+    f.id === feedbackId ? { ...f, isComplete: !f.isComplete } : f
   );
 
   await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));

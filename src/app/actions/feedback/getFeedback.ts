@@ -1,6 +1,7 @@
+// src/app/actions/getFeedback.ts
 "use server";
 
-import { getCurrentUser } from "@/util/getCurrentUser";
+import { getCurrentUser } from "@/lib/user/getCurrentUser";
 
 export async function getFeedback() {
   const user = await getCurrentUser();

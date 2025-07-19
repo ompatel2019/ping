@@ -1,9 +1,9 @@
-// FeedbackList.tsx
+// src/components/dashboard/FeedbackList.tsx
 "use client";
 import { Feedback } from "@/types/User";
 import { CircleCheckBig, Circle, Trash2 } from "lucide-react";
-import { updateFeedback } from "@/app/actions/updateFeedback";
-import { deleteFeedback } from "@/app/actions/deleteFeedback";
+import { updateFeedback } from "@/app/actions/feedback/updateFeedback";
+import { deleteFeedback } from "@/app/actions/feedback/deleteFeedback";
 
 export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
   return (

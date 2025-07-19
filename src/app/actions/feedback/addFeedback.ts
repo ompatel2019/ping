@@ -1,6 +1,7 @@
+// src/app/actions/addFeedback.ts
 "use server";
 
-import { feedbackSchema } from "@/lib/userFeedbackSchema";
+import { feedbackSchema } from "@/lib/validators/userFeedbackSchema";
 import fs from "fs/promises";
 import path from "path";
 import { User } from "@/types/User";

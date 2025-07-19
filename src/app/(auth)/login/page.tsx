@@ -1,7 +1,8 @@
+// src/app/(auth)/login/page.tsx
 "use client";
 
 import { useActionState } from "react";
-import { login } from "@/app/actions/login";
+import { login } from "@/app/actions/auth/login";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

@@ -1,8 +1,9 @@
+// src/app/actions/login.ts
 "use server";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { loginSchema } from "@/lib/loginSchema";
+import { loginSchema } from "@/lib/validators/loginSchema";
 import { User } from "@/types/User";
 import users from "@/data/users.json";
 
