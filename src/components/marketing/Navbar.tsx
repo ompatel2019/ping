@@ -39,7 +39,9 @@ const Navbar = () => {
             <Button>Login</Button>
           </Link>
           <Link href="/signup">
-            <Button variant="outline">Sign Up</Button>
+            <Button variant="outline" className="bg-blue-500 text-white">
+              Sign Up
+            </Button>
           </Link>
         </div>
       </nav>

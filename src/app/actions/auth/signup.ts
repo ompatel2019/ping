@@ -1,4 +1,4 @@
-// src/app/actions/signup.ts
+// src/app/actions/auth/signup.ts
 "use server";
 
 import { signUpSchema } from "@/lib/validators/signUpSchema";
