@@ -33,7 +33,7 @@ const Navbar = () => {
           <li>
             <NavLink href="/pricing" active={pathname === "/pricing"}>
               Pricing
-            </NavLink>  
+            </NavLink>
           </li>
           <li>
             <NavLink href="/how-it-works" active={pathname === "/how-it-works"}>
@@ -42,12 +42,12 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="flex gap-2">
-          <Button>
-            <Link href="/login">Login</Link>
-          </Button>
-          <Button variant="outline">
-            <Link href="/signup">Sign Up</Link>
-          </Button>
+          <Link href="/login">
+            <Button>Login</Button>
+          </Link>
+          <Link href="/signup">
+            <Button variant="outline">Sign Up</Button>
+          </Link>
         </div>
       </nav>
     </>
