@@ -45,7 +45,7 @@ export async function signup(prevState: unknown, formData: FormData) {
 
   (await cookies()).set("userId", newUserId.toString(), {
     path: "/",
-    secure: process.env.NODE_ENV === "production",
+    secure: false,
     maxAge: 60 * 60 * 24 * 30,
     httpOnly: true,
   });

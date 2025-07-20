@@ -29,7 +29,7 @@ export async function login(prevState: { error: string }, formData: FormData) {
   (await cookies()).set("userId", user.id.toString(), {
     httpOnly: true,
     path: "/",
-    secure: process.env.NODE_ENV === "production",
+    secure: false,
     maxAge: 60 * 60 * 24 * 30,
   });
 

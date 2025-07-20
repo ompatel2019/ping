@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { signout } from "@/app/actions/auth/signout";
 
 const DashboardNavbar = () => {
   return (
@@ -12,11 +13,11 @@ const DashboardNavbar = () => {
       </div>
       <ul className="hidden sm:flex justify-center items-center gap-4">
         <li>
-          <Link href="/logout">
+          <form action={signout}>
             <Button variant="outline" className="bg-blue-500 text-white">
               Logout
             </Button>
-          </Link>
+          </form>
         </li>
         <li>
           <Link href="/">
