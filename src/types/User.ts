@@ -1,10 +1,8 @@
 // src/types/User.ts
 export interface User {
-  id: number;
-  name: string;
+  id: string;
   email: string;
   password: string;
-  feedback: Feedback[];
 }
 
 export interface Feedback {

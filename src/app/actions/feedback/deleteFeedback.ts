@@ -1,6 +1,6 @@
-// src/app/actions/deleteFeedback.ts
+// src/app/actions/feedback/deleteFeedback.ts
 "use server";
-import { supabase } from "@/lib/supabase-client";
+import { supabase } from "@/lib/supabase/client";
 
 export async function deleteFeedback(formData: FormData): Promise<void> {
   const feedbackId = String(formData.get("feedbackId"));

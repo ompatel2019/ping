@@ -1,8 +1,8 @@
-// src/app/actions/addFeedback.ts
+// src/app/actions/feedback/addFeedback.ts
 "use server";
 
 import { feedbackSchema } from "@/lib/validators/userFeedbackSchema";
-import { supabase } from "@/lib/supabase-client";
+import { supabase } from "@/lib/supabase/client";
 
 export async function addFeedback(
   prevState: { error: string; success: string },

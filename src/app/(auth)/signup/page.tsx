@@ -30,24 +30,6 @@ export default function SignupPage() {
           )}
           <div>
             <label
-              htmlFor="name"
-              className="block text-gray-700 font-medium mb-1"
-            >
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="John Doe"
-              required
-              name="name"
-              autoComplete="name"
-              minLength={3}
-            />
-          </div>
-          <div>
-            <label
               htmlFor="email"
               className="block text-gray-700 font-medium mb-1"
             >

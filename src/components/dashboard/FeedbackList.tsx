@@ -21,6 +21,11 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
               <div className="flex items-start gap-3">
                 <form action={updateFeedback}>
                   <input type="hidden" name="feedbackId" value={item.id} />
+                  <input
+                    type="hidden"
+                    name="isComplete"
+                    value={String(item.is_complete)}
+                  />
                   <button
                     className="text-gray-400 hover:text-blue-500 transition cursor-pointer"
                     aria-label="Mark as complete"
@@ -33,6 +38,7 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                     )}
                   </button>
                 </form>
+
                 <div className="flex flex-col text-sm text-gray-700">
                   <p
                     className={`text-lg font-bold ${

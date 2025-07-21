@@ -6,7 +6,6 @@ import { login } from "@/app/actions/auth/login";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-// Setup the initial state for useActionState
 const initialState = {
   error: "",
 };
@@ -73,22 +72,6 @@ export default function LoginPage() {
             Create an account
           </Button>
         </Link>
-        <div className="text-center mt-4">
-          <p>Use these credentials to test:</p>
-          <p className="text-sm text-gray-500">Email: admin@gmail.com</p>
-          <p className="text-sm text-gray-500">Password: admin123</p>
-        </div>
-        <div className="text-xs text-gray-500 text-center mt-4">
-          By signing in, you agree to our{" "}
-          <a href="/terms" className="text-blue-600 underline">
-            Terms
-          </a>{" "}
-          and{" "}
-          <a href="/privacy" className="text-blue-600 underline">
-            Privacy
-          </a>
-          .
-        </div>
       </form>
     </section>
   );
