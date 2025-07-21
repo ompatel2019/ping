@@ -38,6 +38,19 @@ const WidgetForm = ({
           action={formAction}
         >
           <label
+            htmlFor="title"
+            className="text-sm font-medium text-gray-700 text-left"
+          >
+            Feedback Title
+          </label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Feedback Title"
+            className="w-full p-2 rounded-md border border-gray-300"
+          />
+          <label
             htmlFor="message"
             className="text-sm font-medium text-gray-700 text-left"
           >

@@ -9,7 +9,8 @@ export interface User {
 
 export interface Feedback {
   id: number;
+  title: string;
   feedback: string;
-  createdAt: string;
-  isComplete: boolean;
+  created_at: string;
+  is_complete: boolean;
 }

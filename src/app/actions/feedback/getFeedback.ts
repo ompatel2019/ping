@@ -1,12 +1,13 @@
 // src/app/actions/getFeedback.ts
 "use server";
 
-import { getCurrentUser } from "@/lib/user/getCurrentUser";
+import { supabase } from "@/lib/supabase-client";
 
 export async function getFeedback() {
-  const user = await getCurrentUser();
-  if (!user) {
-    return { error: "User not found" };
+  const { data, error } = await supabase.from("feedback").select("*");
+
+  if (error) {
+    return { error: error.message };
   }
-  return user.feedback; 
+  return data;
 }

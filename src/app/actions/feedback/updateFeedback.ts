@@ -1,28 +1,21 @@
 // src/app/actions/updateFeedback.ts
 "use server";
 
-import { User } from "@/types/User";
-import { getCurrentUser } from "@/lib/user/getCurrentUser";
-import fs from "fs/promises";
-import path from "path";
-
-const USERS_PATH = path.join(process.cwd(), "src", "data", "users.json");
+import { supabase } from "@/lib/supabase-client";
 
 export async function updateFeedback(formData: FormData): Promise<void> {
-  const feedbackId = Number(formData.get("feedbackId"));
-  if (!feedbackId) return;
+  const feedbackId = String(formData.get("feedbackId"));
 
-  const raw = await fs.readFile(USERS_PATH, "utf-8");
-  const users: User[] = JSON.parse(raw);
+  const { error } = await supabase
+    .from("feedback")
+    .update({
+      is_complete: true,
+    })
+    .eq("id", feedbackId);
 
-  const userId = (await getCurrentUser())?.id;
+  if (error) {
+    console.log(error);
+  }
 
-  const userIndex = users.findIndex((u) => u.id === userId);
-  if (userIndex === -1) return;
-
-  users[userIndex].feedback = users[userIndex].feedback.map((f) =>
-    f.id === feedbackId ? { ...f, isComplete: !f.isComplete } : f
-  );
-
-  await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
+  return;
 }

@@ -2,17 +2,14 @@
 "use server";
 
 import { feedbackSchema } from "@/lib/validators/userFeedbackSchema";
-import fs from "fs/promises";
-import path from "path";
-import { User } from "@/types/User";
-
-const USERS_PATH = path.join(process.cwd(), "src", "data", "users.json");
+import { supabase } from "@/lib/supabase-client";
 
 export async function addFeedback(
   prevState: { error: string; success: string },
   formData: FormData
 ): Promise<{ error: string; success: string }> {
   const feedback = feedbackSchema.safeParse({
+    title: formData.get("title"),
     feedback: formData.get("feedback"),
   });
 
@@ -23,26 +20,16 @@ export async function addFeedback(
     };
   }
 
-  const raw = await fs.readFile(USERS_PATH, "utf-8");
-  const users = JSON.parse(raw);
-
-  const user = users.find((u: User) => u.id === 1);
-  if (!user) {
-    return { error: "User not found", success: "" };
-  }
-
-  if (!user.feedback) {
-    user.feedback = [];
-  }
-
-  user.feedback.push({
-    id: Math.floor(Math.random() * 1000000),
+  const { error } = await supabase.from("feedback").insert({
+    title: feedback.data.title,
     feedback: feedback.data.feedback,
-    createdAt: new Date().toISOString(),
-    isComplete: false,
+    created_at: new Date().toISOString(),
+    is_complete: false,
   });
 
-  await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
+  if (error) {
+    return { error: error.message, success: "" };
+  }
 
   return { error: "", success: "Feedback added successfully" };
 }

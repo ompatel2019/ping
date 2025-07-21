@@ -13,7 +13,7 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
           Recent Feedback
         </h2>
         <ul className="space-y-4">
-          {feedback.map((item) => (
+          {feedback.map((item: Feedback) => (
             <li
               key={item.id}
               className="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
@@ -22,11 +22,11 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                 <form action={updateFeedback}>
                   <input type="hidden" name="feedbackId" value={item.id} />
                   <button
-                    className="text-gray-400 hover:text-blue-500 transition"
+                    className="text-gray-400 hover:text-blue-500 transition cursor-pointer"
                     aria-label="Mark as complete"
                     type="submit"
                   >
-                    {item.isComplete ? (
+                    {item.is_complete ? (
                       <CircleCheckBig className="w-5 h-5 mt-1 text-blue-500" />
                     ) : (
                       <Circle className="w-5 h-5 mt-1 text-blue-500" />
@@ -35,14 +35,21 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                 </form>
                 <div className="flex flex-col text-sm text-gray-700">
                   <p
+                    className={`text-lg font-bold ${
+                      item.is_complete ? "text-lg line-through" : ""
+                    }`}
+                  >
+                    {item.title}
+                  </p>
+                  <p
                     className={`font-medium ${
-                      item.isComplete ? "line-through" : ""
+                      item.is_complete ? "line-through" : ""
                     }`}
                   >
                     {item.feedback}
                   </p>
                   <span className="text-xs text-gray-400 mt-1">
-                    {new Date(item.createdAt).toLocaleString("en-GB", {
+                    {new Date(item.created_at).toLocaleString("en-GB", {
                       dateStyle: "short",
                       timeStyle: "medium",
                       timeZone: "Australia/Sydney",
