@@ -1,9 +1,9 @@
 // src/lib/user/getCurrentUser.ts
 import { User } from "@/types/User";
-import { createServerClient } from "@/lib/supabase/server";
+import { createSupabaseServerComponentClient } from "@/lib/supabase/server";
 
 export async function getCurrentUser(): Promise<User | null> {
-  const supabase = createServerClient();
+  const supabase = createSupabaseServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
