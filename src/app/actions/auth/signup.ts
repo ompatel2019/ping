@@ -1,7 +1,7 @@
 // src/app/actions/auth/signup.ts
 "use server";
 
-import { createSupabaseServerActionClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { signUpSchema } from "@/lib/validators/signUpSchema";
 import { redirect } from "next/navigation";
 
@@ -15,7 +15,7 @@ export async function signup(prevState: unknown, formData: FormData) {
     return { error: user.error.issues.map((e) => e.message).join(", ") };
   }
 
-  const supabase = createSupabaseServerActionClient();
+  const supabase = await createClient();
 
   const { error } = await supabase.auth.signUp({
     email: user.data.email,
