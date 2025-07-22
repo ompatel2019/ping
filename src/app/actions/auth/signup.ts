@@ -3,6 +3,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { signUpSchema } from "@/lib/validators/signUpSchema";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function signup(prevState: unknown, formData: FormData) {
@@ -17,14 +18,11 @@ export async function signup(prevState: unknown, formData: FormData) {
 
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.signUp({
-    email: user.data.email,
-    password: user.data.password,
-  });
+  const { error } = await supabase.auth.signUp(user.data);
 
   if (error) {
     return { error: error.message };
   }
-
+  revalidatePath("/", "layout");
   redirect("/dashboard");
 }

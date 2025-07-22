@@ -1,6 +1,6 @@
 // src/app/actions/feedback/updateFeedback.ts
 "use server";
-import { supabase } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 
 export async function updateFeedback(formData: FormData): Promise<void> {
   const feedbackId = String(formData.get("feedbackId"));
@@ -12,6 +12,8 @@ export async function updateFeedback(formData: FormData): Promise<void> {
 
   const isComplete = isCompleteStr === "true";
   console.log("isComplete (parsed bool):", isComplete);
+
+  const supabase = createClient();
 
   const { error } = await supabase
     .from("feedback")

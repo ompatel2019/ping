@@ -2,7 +2,7 @@
 "use server";
 
 import { feedbackSchema } from "@/lib/validators/userFeedbackSchema";
-import { supabase } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 
 export async function addFeedback(
   prevState: { error: string; success: string },
@@ -19,6 +19,8 @@ export async function addFeedback(
       success: "",
     };
   }
+
+  const supabase = createClient();
 
   const { error } = await supabase.from("feedback").insert({
     title: feedback.data.title,

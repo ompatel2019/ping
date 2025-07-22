@@ -4,6 +4,7 @@ import { FeedbackList } from "@/components/dashboard/FeedbackList";
 import { getFeedback } from "../actions/feedback/getFeedback";
 import { Feedback } from "@/types/User";
 
+export const dynamic = "force-dynamic";
 const DashboardPage = async () => {
   const feedback = await getFeedback();
 
