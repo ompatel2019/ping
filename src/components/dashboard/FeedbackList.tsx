@@ -1,11 +1,42 @@
 // src/components/dashboard/FeedbackList.tsx
 "use client";
+
+import { useEffect, useState } from "react";
 import { Feedback } from "@/types/User";
 import { CircleCheckBig, Circle, Trash2 } from "lucide-react";
 import { updateFeedback } from "@/app/actions/feedback/updateFeedback";
 import { deleteFeedback } from "@/app/actions/feedback/deleteFeedback";
+import { createClient } from "@/lib/supabase/client";
 
 export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
+  const [feedbackList, setFeedbackList] = useState<Feedback[]>(feedback);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    const channel = supabase
+      .channel("realtime-feedback")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "feedback" },
+        async () => {
+          const { data, error } = await supabase
+            .from("feedback")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+          if (!error) {
+            setFeedbackList(data as Feedback[]);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
   return (
     <div className="w-full">
       <div className="bg-blue-50 rounded-xl p-6 shadow-md border border-blue-100">
@@ -13,7 +44,7 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
           Recent Feedback
         </h2>
         <ul className="space-y-4">
-          {feedback.map((item: Feedback) => (
+          {feedbackList.map((item) => (
             <li
               key={item.id}
               className="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
@@ -42,7 +73,7 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                 <div className="flex flex-col text-sm text-gray-700">
                   <p
                     className={`text-lg font-bold ${
-                      item.is_complete ? "text-lg line-through" : ""
+                      item.is_complete ? "line-through" : ""
                     }`}
                   >
                     {item.title}
