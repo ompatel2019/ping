@@ -1,3 +1,4 @@
+// src/components/marketing/Navbar.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -9,13 +10,13 @@ import { getClientUser } from "@/lib/supabase/auth-client";
 const Navbar = () => {
   const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true); // 🆕 Track loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkUser = async () => {
       const user = await getClientUser();
       setIsLoggedIn(!!user);
-      setLoading(false); // 🧠 Done loading after user is checked
+      setLoading(false);
     };
     checkUser();
   }, []);
