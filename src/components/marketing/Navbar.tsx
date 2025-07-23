@@ -6,6 +6,7 @@ import NavLink from "../layout/NavLink";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getClientUser } from "@/lib/supabase/auth-client";
+import { signout } from "@/app/actions/auth/signout";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -48,9 +49,16 @@ const Navbar = () => {
       </ul>
       <div className="flex gap-2">
         {loading ? null : isLoggedIn ? ( // 🔒 Only render after user status is known
-          <Link href="/dashboard">
-            <Button>Dashboard</Button>
-          </Link>
+          <>
+            <Link href="/dashboard">
+              <Button>Dashboard</Button>
+            </Link>
+            <form action={signout}>
+              <Button variant="outline" className="bg-blue-500 text-white">
+                Logout
+              </Button>
+            </form>
+          </>
         ) : (
           <>
             <Link href="/login">

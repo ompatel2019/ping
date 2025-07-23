@@ -78,11 +78,7 @@ export const FeedbackList = ({ feedback }: { feedback: Feedback[] }) => {
                   >
                     {item.title}
                   </p>
-                  <p
-                    className={`font-medium ${
-                      item.is_complete ? "line-through" : ""
-                    }`}
-                  >
+                  <p className={`font-medium ${item.is_complete ? "" : ""}`}>
                     {item.feedback}
                   </p>
                   <span className="text-xs text-gray-400 mt-1">

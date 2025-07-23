@@ -2,7 +2,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { login } from "@/app/actions/auth/login";
+import { login, signInWithGoogle } from "@/app/actions/auth/login";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -72,6 +72,9 @@ export default function LoginPage() {
             Create an account
           </Button>
         </Link>
+      </form>
+      <form action={signInWithGoogle}>
+        <Button>Sign in with Google</Button>
       </form>
     </section>
   );
